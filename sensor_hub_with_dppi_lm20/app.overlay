@@ -1,0 +1,32 @@
+/ {
+	zephyr,user {
+		/* Using low level driver directly so it is not strictly 
+		 * necessary to use pin assigments in DT, but doing it
+		 * to help prevent overlapping pin assigments. 
+		 */
+		spim-sck-gpios = <&gpio1 6 0>;
+		spim-miso-gpios = <&gpio1 9 0>;
+		spim-mosi-gpios = <&gpio1 8 0>;
+		spim-ss-gpios = <&gpio1 4 0>;
+	};
+};
+
+&timer22 {
+	status = "reserved";
+};
+/* Reserve access to SPIM21 and the other serial interfaces which share the
+ * same instance number.
+ */
+&spi21 {
+	status = "reserved";
+};
+&i2c21 {
+	status = "reserved";
+};
+&uart21 {
+	status = "reserved";
+};
+
+&mx25r64 {
+	status = "okay";
+};
